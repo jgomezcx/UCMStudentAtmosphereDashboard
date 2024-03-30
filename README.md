@@ -1,52 +1,46 @@
-# Web Development Project 5 - *Name of App Here*
+# Web Development Project 5 - UCM Student Atmosphere Dashboard
 
-Submitted by: **Your Name Here**
+Submitted by: Jaime Gomez
 
-This web app: **insert description**
+This web app: UCM Student Atmosphere Dashboard is an application that a student can look at the be able to the the upcomming weather at UC Merced. Whether its looking at the weather with a glance to prepare the correct outfits, or a quick check to make sure you dont forget an umbrella or check the wind/temperature for that event happening at school later, It is the perfect and simple application that will allow you to stay informed as a student at UCM about the weather so your never caught by surprise by the weather! 
 
-Time spent: **X** hours spent in total
+Time spent: 18 hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] **The list displays a list of data fetched using an API call**
-- [ ] **Data uses the useEffect React hook and async/await syntax**
-- [ ] **The app dashboard includes at least three summary statistics about the data such as**
-  - [ ] *insert details*
-- [ ] **A search bar allows the user to search for an item in the fetched data**
-- [ ] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
+- [X] **The list displays a list of data fetched using an API call**
+- [X] **Data uses the useEffect React hook and async/await syntax**
+- [X] **The app dashboard includes at least three summary statistics about the data such as**
+  - [X] Average temperature (48 hours)
+  - [X] Total Rainfall (48 hours)
+  - [X] Average Wind Speed (48 hours)
+- [X] **A search bar allows the user to search for an item in the fetched data**
+- [X] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
 
 The following **optional** features are implemented:
 
-- [ ] Multiple filters can be applied simultaneously
+- [X] Multiple filters can be applied simultaneously
 - [ ] Filters use different input types such as a text input, a selection, or a slider
 - [ ] The user can enter specific bounds for filter values
-
-The following **additional** features are implemented:
-
-* [ ] List anything else that you added to improve the site's functionality!
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://https://imgur.com/a/XmCRjPq.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+One of the biggest challenges I Had when working on this application was using the API to my advantage to be able to build the dashboard application that I did. I spent a lot of time looking at documentation for the api OpenWeather and WeatherBit so that i could extract the data I needed to accomplish displaying the necesary information on my application. The second hardest part was access, grabing the json objects from the response to the api call, and then doing something with that data. I struggled to find an api thast was not limiting with calls per day, 50/api calls a day for free tier, which postponed a lot of my work process. I had to wait two days to continue to pull from the api and that was the biggest hurdle of this project. lastly, I struggled a lot on displaying the right information, luckily the .map function makes it more easy but it still takes knowing the json and the api to be able to work with it properly and efficiently.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2024] [Jaime Gomez]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
