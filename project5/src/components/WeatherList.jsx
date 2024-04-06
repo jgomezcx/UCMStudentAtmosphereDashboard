@@ -1,10 +1,12 @@
 import List from './List';
 import React, { useState, useEffect } from 'react';
 import '../App.css';
+import DetailCard from './DetailCard';
+import { Link } from 'react-router-dom';
 
-const WeatherList = ({ weatherData }) => {
+const WeatherList = ({ weatherData, setDetailedItem }) => {
   const [listItems, setListItems] = useState([]);
-
+ 
   useEffect(() => {
     if (weatherData && weatherData.list) {
     // Convert Kelvin to Fahrenheit for display
@@ -18,19 +20,35 @@ const WeatherList = ({ weatherData }) => {
       const description = item.weather[0].description;
       const wind = `Wind: ${item.wind.speed} m/s at ${item.wind.deg}°`;
       const main = item.weather[0].main;
+      const feelsLike = kelvinToFahrenheit(item.main.feels_like).toFixed(1) + ' °F';
+      const pressure = item.main.pressure + ' hPa';
+      const humidity = item.main.humidity + '%';
+      const clouds = item.clouds.all + '%';
+      const windSpeed = item.wind.speed + ' m/s';
+      const windGust = item.wind.gust + ' m/s';
+      const visibility = (item.visibility / 1000).toFixed(1) + ' km';
+      const rain = item.rain ? item.rain['3h'].toFixed(2) + ' mm' : '0 mm';
 
-      return {
+      return { 
         date,
         time,
         temperature,
-        description,
+        feelsLike,
+        pressure,
+        humidity,
+        clouds,
         wind,
-        main
+        windSpeed,
+        windGust,
+        visibility,
+        description,
+        main,
+        rain
       };
     });
 
     setListItems(items);
-    console.log(items);
+    // console.log(items);
     }
   }, [weatherData]);
 
@@ -52,6 +70,12 @@ const WeatherList = ({ weatherData }) => {
   const handleFilter = (selectedFilter) => {
     setFilter(selectedFilter); // Update the current filter
   };
+
+  const showDetail = (item) => {
+    setDetailedItem(item); // Set the item for the detailed view
+  };
+
+  const info = {};
 
   return (
     <div className="weather-list">
@@ -81,6 +105,8 @@ const WeatherList = ({ weatherData }) => {
       </div>
 
       {listItems.map((entry, index) => {
+        const dateForURL = entry.date.replaceAll('/', '-');
+        const timeForURL = entry.time.replaceAll(':', '-');
         if ( (!searchDate || entry.date === searchDate) && (filter === 'All' || entry.main === filter) ){  
           return (
             <div className="list-item" key={index}>
@@ -88,8 +114,18 @@ const WeatherList = ({ weatherData }) => {
               <div className="time">{entry.time}</div>
               <div className="temperature">{entry.temperature}</div>
               <div className="description">{entry.description}</div>
-              <div className="wind">{entry.wind}</div>
               <div className="main">{entry.main}</div>
+              
+              <Link
+                to={{
+                  pathname: `/${dateForURL}/${timeForURL}/${index}`,
+                }}
+              >
+                click for more
+              </Link>
+              {/* <a href="#details" onClick={() => showDetail(entry) }>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;click for more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a> */}
             </div>
           );
         } else {

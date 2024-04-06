@@ -4,7 +4,7 @@ const NavBar = () => (
     <nav className="navbar">
       
       <ul>
-        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="/">Dashboard</a></li>
         <li><a href="#search">Search</a></li>
         <li><a href="#about">About</a></li>
       </ul>

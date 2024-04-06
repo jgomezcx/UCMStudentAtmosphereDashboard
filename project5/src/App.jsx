@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 const WEATHERBIT_KEY =  import.meta.env.VITE_WEATHERBIT_API_KEY;
 const OPENWEATHER_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
@@ -9,9 +10,12 @@ import Card from './components/Card';
 import List from './components/List';
 import NavBar from './components/NavBar';
 import Summary from './components/Summary';
+import DetailCard from './components/DetailCard';
+import WeatherChart from './components/WeatherChart';
 
 import mockWeatherData from './assets/mock.json';
 import MockListData from './assets/new.json';
+
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -71,6 +75,7 @@ function App() {
     }
   }, [useMockListData]);
 
+  const [detailedItem, setDetailedItem] = useState(null);
 
   return (
     <>
@@ -78,6 +83,12 @@ function App() {
       <div className='Left'>
         <Header />
         <NavBar />
+        {openWeatherInformation ? (
+        <WeatherChart weatherData={openWeatherInformation}/>
+
+        ) : (
+          <p>Loading weather chart...</p>
+        )}
       </div>
     
       <div className="Right">
@@ -91,17 +102,19 @@ function App() {
           ) : (
             <p>Loading weather data...</p>
           )}
-        </div>
+        </div> 
 
         <div className='Row2'>
           <Summary weatherData={openWeatherInformation}/>
         </div>
 
         <div className='Row3'>
-          
-          {/* <List items={listItems} /> */}
-          <List data={openWeatherInformation}/>
-
+        {detailedItem ? (
+            <DetailCard item={detailedItem} />
+            
+          ) : (
+          <List data={openWeatherInformation} setDetailedItem={setDetailedItem}/>
+        )}
         </div>
         
       </div>
